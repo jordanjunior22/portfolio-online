@@ -17,7 +17,24 @@ export default function DocModal({
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  const content = section.content as Record<string, unknown>;
+  type Content = {
+    heading?: string;
+    body?: string;
+    items?: {
+      title: string;
+      org?: string;
+      period?: string;
+      detail: string;
+      tech?: string;
+      link?: string;
+    }[];
+    groups?: {
+      label: string;
+      items: string[];
+    }[];
+  };
+
+  const content = section.content as Content;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
